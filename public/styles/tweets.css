@@ -1,3 +1,4 @@
+/* GENERAL STYLING, POSITIONING, EFFECTS FOR TWEET */
 article.tweet {
   border: 4px solid #545149;
   padding: 1em;
@@ -15,6 +16,7 @@ article.tweet hr {
   background-color: #545149;
 }
 
+/* STYLES FOR TWEET HEADER */
 article.tweet header {
   display: flex;
   justify-content: space-between;
@@ -32,11 +34,13 @@ article.tweet header .handle {
   color: rgb(175, 175, 175);
 }
 
+/* STYLES FOR TWEET BODY */
 article.tweet .tweet-body {
   font-size: 0.8em;
   font-weight: bold;
 }
 
+/* STYLES FOR TWEET FOOTER */
 article.tweet footer {
   display: flex;
   justify-content: space-between;
