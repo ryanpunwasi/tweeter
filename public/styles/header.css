@@ -1,4 +1,4 @@
-nav + header {
+nav + header { /* Style the header element, which is a sibling of nav */
   height: 400px;
   width: 100%;
   display: flex;
