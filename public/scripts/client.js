@@ -21,7 +21,7 @@ const createTweetElement = (tweet) => {
         </div>
         <div class="handle">${ handle || '' }</div>
       </header>
-      <p class="tweet-body">${ renderEscapedText(text) }</p>
+      <p class="tweet-body">${ renderEscapedText(text) /* Escape text */}</p>
       <hr />
       <footer class="tweet-footer">
         <p>${ createdAt }</p>
@@ -52,16 +52,17 @@ $(document).ready(function() {
   $(".new-tweet form").submit(function(event) {
     event.preventDefault(); // Prevent default behaviour
     const tweetValue = $(this).find('#tweet-text').val(); // Extract textarea value
-
-    // Render error and prevent form submission if error present
-    const error = validateTweetSubmission(tweetValue);
     const errorElement = $('.error');
-    if (error) {
+    
+    const error = validateTweetSubmission(tweetValue); // Generate error text if error is present
+    // Hide error on form submission, set text of error to relevant message
+    errorElement.slideUp(() => {
       errorElement.text(error);
-      errorElement.slideDown();
-      return;
-    } else {
-      errorElement.slideUp();
+    });
+
+    if (error) {
+      errorElement.slideDown(); // Show error message
+      return; // Prevent data from being POSTed
     }
 
     const serializedData = $(this).serialize(); // Serialize form data
@@ -78,7 +79,6 @@ $(document).ready(function() {
   });
 
   const loadTweets = () => {
-
     // Make AJAX GET request to /tweets
     $.ajax('/tweets', { 
       method: 'GET'
