@@ -61,7 +61,7 @@ $(document).ready(function() {
       data: serializedData,
       success: [
         loadTweets,
-        () => { $(this).find('#tweet-text').val('') }
+        () => { $(this).find('#tweet-text').val('').trigger("input") } // Clear form and trigger input event to reset character counter
       ]
     });
   });
