@@ -52,13 +52,17 @@ $(document).ready(function() {
       alert(error);
       return;
     }
-    
+
     const serializedData = $(this).serialize(); // Serialize form data
 
-    // Make AJAX POST request to /tweets
+    // Make AJAX POST request to /tweets. Update tweets and clear form on sucessful submission
     $.ajax('/tweets', { 
       method: 'POST',
-      data: serializedData 
+      data: serializedData,
+      success: [
+        loadTweets,
+        () => { $(this).find('#tweet-text').val('') }
+      ]
     });
   });
 
