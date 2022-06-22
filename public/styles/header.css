@@ -5,6 +5,7 @@ nav + header { /* Style the header element, which is a sibling of nav */
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #e6b8b8;
+  background-color: #afafaf;
   background-image: url("../images/background.png");
+  margin-bottom: 1em;
 }
