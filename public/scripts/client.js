@@ -1,9 +1,3 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
 const createTweetElement = (tweet) => {
   const { name, handle, avatars } = tweet.user || {}; // User information
   const { text } = tweet.content || {}; // Tweet text
@@ -46,9 +40,13 @@ const renderTweets = tweets => {
 };
 
 $(document).ready(function() {
+
+  // Send POST request asynchronously to /tweets on submission
   $(".new-tweet form").submit(function(event) {
-    event.preventDefault();
-    const serializedData = $(this).serialize();
+    event.preventDefault(); // Prevent default behaviour
+    const serializedData = $(this).serialize(); // Serialize form data
+
+    // Make AJAX POST request to /tweets
     $.ajax('/tweets', { 
       method: 'POST',
       data: serializedData 
@@ -56,11 +54,13 @@ $(document).ready(function() {
   });
 
   const loadTweets = () => {
+
+    // Make AJAX GET request to /tweets
     $.ajax('/tweets', { 
       method: 'GET'
     })
     .done(function(data) {
-      renderTweets(data);
+      renderTweets(data); // Render tweets once they are fetched
     });
   };
 
