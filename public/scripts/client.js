@@ -1,3 +1,10 @@
+const renderEscapedText = (str) => {
+  // Render HTML-safe text
+  let div = document.createElement("div"); // Create div
+  div.appendChild(document.createTextNode(str)); // Create and append a text node to div
+  return div.innerHTML;
+};
+
 const createTweetElement = (tweet) => {
   const { name, handle, avatars } = tweet.user || {}; // User information
   const { text } = tweet.content || {}; // Tweet text
@@ -14,7 +21,7 @@ const createTweetElement = (tweet) => {
         </div>
         <div class="handle">${ handle || '' }</div>
       </header>
-      <p class="tweet-body">${ text || '' }</p>
+      <p class="tweet-body">${ renderEscapedText(text) }</p>
       <hr />
       <footer class="tweet-footer">
         <p>${ createdAt }</p>
