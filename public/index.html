@@ -38,8 +38,12 @@
     <nav>
       <span>tweeter</span>
       <div class="new-tweet-container">
-        <p>Write a new tweet</p>
-        <i class="fa-solid fa-angles-down"></i>
+        <div class="nav-item-container">
+          <div class="nav-item" id="compose">
+            <p>Write a new tweet</p>
+            <i class="fa-solid fa-angles-down"></i>
+          </div>
+        </div>
       </div>
     </nav>
     <header>
@@ -55,7 +59,7 @@
     <!-- Page-specific (main) content here -->
     <main class="container" id="main">
       <section class="new-tweet">
-        <h2>Compose Tweet</h2>
+        <h3>Compose Tweet</h3>
         <div class="error"></div>
         <form method="POST" action="/tweets">
           <label for="tweet-text">What are you humming about?</label>
