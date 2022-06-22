@@ -1,7 +1,7 @@
 const createTweetElement = (tweet) => {
   const { name, handle, avatars } = tweet.user || {}; // User information
   const { text } = tweet.content || {}; // Tweet text
-  const createdAt = tweet.created_at || null; // Date (in milliseconds) that the tweet was created
+  const createdAt = timeago.format(tweet.created_at) || null; // Time ago that the tweet was created
 
   // HTML template for tweet
   const tweetEle =
@@ -17,7 +17,7 @@ const createTweetElement = (tweet) => {
       <p class="tweet-body">${ text || '' }</p>
       <hr />
       <footer class="tweet-footer">
-        <p>${ timeago.format(createdAt) }</p>
+        <p>${ createdAt }</p>
         <div class="icon-bar">
           <i class="fa-solid fa-flag"></i>
           <i class="fa-solid fa-retweet"></i>
