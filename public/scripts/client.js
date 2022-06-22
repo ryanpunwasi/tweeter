@@ -53,11 +53,15 @@ $(document).ready(function() {
     event.preventDefault(); // Prevent default behaviour
     const tweetValue = $(this).find('#tweet-text').val(); // Extract textarea value
 
-    // Alert and prevent form submission if error present
+    // Render error and prevent form submission if error present
     const error = validateTweetSubmission(tweetValue);
+    const errorElement = $('.error');
     if (error) {
-      alert(error);
+      errorElement.text(error);
+      errorElement.slideDown();
       return;
+    } else {
+      errorElement.slideUp();
     }
 
     const serializedData = $(this).serialize(); // Serialize form data
