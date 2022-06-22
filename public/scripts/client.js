@@ -44,6 +44,15 @@ $(document).ready(function() {
   // Send POST request asynchronously to /tweets on submission
   $(".new-tweet form").submit(function(event) {
     event.preventDefault(); // Prevent default behaviour
+    const tweetValue = $(this).find('#tweet-text').val(); // Extract textarea value
+
+    // Alert and prevent form submission if error present
+    const error = validateTweetSubmission(tweetValue);
+    if (error) {
+      alert(error);
+      return;
+    }
+    
     const serializedData = $(this).serialize(); // Serialize form data
 
     // Make AJAX POST request to /tweets
