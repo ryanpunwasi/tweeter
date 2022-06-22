@@ -39,7 +39,7 @@ const createTweetElement = (tweet) => {
 
 const renderTweets = tweets => {
   
-  // Create HTML template for each tweet and append it to #main
+  // Create HTML template for each tweet and append it to #tweets-container
   tweets.forEach(tweet => {
     const tweetElement = createTweetElement(tweet);
     $('#tweets-container').append(tweetElement);
