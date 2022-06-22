@@ -48,6 +48,10 @@
   padding-bottom: 0.2em;
 }
 
+.new-tweet button:hover {
+  cursor: pointer;
+}
+
 .new-tweet .counter.red {
   color: red;
 }
