@@ -1,10 +1,3 @@
-const renderEscapedText = (str) => {
-  // Render HTML-safe text
-  let div = document.createElement("div"); // Create div
-  div.appendChild(document.createTextNode(str)); // Create and append a text node to div
-  return div.innerHTML;
-};
-
 const createTweetElement = (tweet) => {
   const { name, handle, avatars } = tweet.user || {}; // User information
   const { text } = tweet.content || {}; // Tweet text
@@ -48,6 +41,11 @@ const renderTweets = tweets => {
 
 $(document).ready(function() {
 
+  // Toggle form
+  $("#compose").click(function(event) {
+    toggleForm();
+  });
+
   // Send POST request asynchronously to /tweets on submission
   $(".new-tweet form").submit(function(event) {
     event.preventDefault(); // Prevent default behaviour
@@ -78,7 +76,7 @@ $(document).ready(function() {
     });
   });
 
-  const loadTweets = () => {
+  const loadTweets = (() => {
     // Make AJAX GET request to /tweets
     $.ajax('/tweets', { 
       method: 'GET'
@@ -86,7 +84,5 @@ $(document).ready(function() {
     .done(function(data) {
       renderTweets(data); // Render tweets once they are fetched
     });
-  };
-
-  loadTweets();
+  })();
 });
