@@ -1,4 +1,7 @@
 const createTweetElement = (tweet) => {
+  /* Returns a JQuery element that consists of the name, handle, avatars, text and created_at properties in tweet embedded in a HTML template.
+  */
+
   const { name, handle, avatars } = tweet.user || {}; // User information
   const { text } = tweet.content || {}; // Tweet text
   const createdAt = timeago.format(tweet.created_at) || null; // Time ago that the tweet was created
@@ -39,20 +42,31 @@ const renderTweets = tweets => {
   });
 };
 
+const loadTweets = () => {
+  // Make AJAX GET request to /tweets
+  $.ajax('/tweets', {
+    method: 'GET'
+  })
+  .done(function(data) {
+    renderTweets(data); // Render tweets once they are fetched
+  });
+};
+
 $(document).ready(function() {
 
-  // Toggle form
-  $("#compose").click(function(event) {
+  // Attach handler that toggles form when new tweet button is clicked
+  $("#compose").click(function() {
     toggleForm();
   });
 
-  // Send POST request asynchronously to /tweets on submission
+  // Handle form submission
   $(".new-tweet form").submit(function(event) {
+
     event.preventDefault(); // Prevent default behaviour
     const tweetValue = $(this).find('#tweet-text').val(); // Extract textarea value
     const errorElement = $('.error');
-    
     const error = validateTweetSubmission(tweetValue); // Generate error text if error is present
+
     // Hide error on form submission, set text of error to relevant message
     errorElement.slideUp(() => {
       errorElement.text(error);
@@ -66,23 +80,18 @@ $(document).ready(function() {
     const serializedData = $(this).serialize(); // Serialize form data
 
     // Make AJAX POST request to /tweets. Update tweets and clear form on sucessful submission
-    $.ajax('/tweets', { 
+    $.ajax('/tweets', {
       method: 'POST',
       data: serializedData,
       success: [
         loadTweets,
-        () => { $(this).find('#tweet-text').val('').trigger("input") } // Clear form and trigger input event to reset character counter
+        () => {
+          $(this).find('#tweet-text').val('').trigger("input"); // Clear form and trigger input event to reset character counter
+        }
       ]
     });
   });
 
-  const loadTweets = (() => {
-    // Make AJAX GET request to /tweets
-    $.ajax('/tweets', { 
-      method: 'GET'
-    })
-    .done(function(data) {
-      renderTweets(data); // Render tweets once they are fetched
-    });
-  })();
+  // Load tweets
+  loadTweets();
 });
