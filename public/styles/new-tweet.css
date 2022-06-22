@@ -1,9 +1,10 @@
 .new-tweet {
   width: 60%;
   margin-bottom: 1em;
+  display: none;
 }
 
-.new-tweet h2 {
+.new-tweet h3 {
   text-align: center;
 }
 
