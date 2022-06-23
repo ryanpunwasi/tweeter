@@ -9,3 +9,8 @@
   margin-bottom: 1.5em;
   display: none;
 }
+
+.general-error {
+  margin-top: 1em;
+  width: 70%;
+}
