@@ -9,7 +9,7 @@ const renderError = (errorText, ele) => {
   });
 
   // Show error
-  if (error) {
+  if (errorText) {
     ele.slideDown();
   }
 };
