@@ -43,11 +43,3 @@ body {
   justify-content: center;
   width: 80%;
  }
-
- #tweets-container div {
-  display: inherit;
-  flex-direction: inherit;
-  align-items: inherit;
-  justify-content: inherit;
-  width: 100%;
- }
