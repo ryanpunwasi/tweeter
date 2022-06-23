@@ -3,7 +3,7 @@ const validateTweetSubmission = input => {
   let error =
   !input ? 'Please enter some text.' :
   input.length > 140 ? 'Your tweet must be 140 characters or less.' :
-  false;
+  '';
 
   return error;
 };
