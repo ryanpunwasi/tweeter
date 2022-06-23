@@ -36,16 +36,21 @@ const createTweetElement = (tweet) => {
 const renderTweets = tweets => {
   
   // Create HTML template for each tweet and append it to #tweets-container
+  const listOfTweets = $('<div>');
   tweets.forEach(tweet => {
     const tweetElement = createTweetElement(tweet);
-    $('#tweets-container').append(tweetElement);
+    listOfTweets.append(tweetElement);
   });
+  listOfTweets.append("</div>");
+  $('#tweets-container').html(listOfTweets);
 };
 
 const loadTweets = () => {
+  const errorElement = $('.general-error');
   // Make AJAX GET request to /tweets
   $.ajax('/tweets', {
-    method: 'GET'
+    method: 'GET',
+    error: (e) => renderError(`Unable to load tweets (${e.status})`, errorElement)
   })
   .done(function(data) {
     renderTweets(data); // Render tweets once they are fetched
@@ -65,8 +70,9 @@ $(document).ready(function() {
     event.preventDefault(); // Prevent default behaviour
     const tweetValue = $(this).find('#tweet-text').val(); // Extract textarea value
     const error = validateTweetSubmission(tweetValue); // Store error text if validation fails, false if no error present
+    const errorElement = $('.validate-error'); // Get error element
 
-    renderError(error);
+    renderError(error, errorElement);
     if (error) {
       return; // Prevent data from being POSTed
     }
@@ -83,7 +89,7 @@ $(document).ready(function() {
           $(this).find('#tweet-text').val('').trigger("input"); // Clear form and trigger input event to reset character counter
         }
       ],
-      error: () => renderError("Something went wrong...")
+      error: () => renderError("Something went wrong...", errorElement)
     });
   });
 
