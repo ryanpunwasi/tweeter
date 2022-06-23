@@ -1,5 +1,5 @@
 const createTweetElement = (tweet) => {
-  /* Returns a JQuery element that consists of the name, handle, avatars, text and created_at properties in tweet embedded in a HTML template.
+  /* Returns a JQuery element that consists of the `name`, `handle`, `avatars`, `text` and `created_at` properties in tweet embedded in a HTML template.
   */
 
   const { name, handle, avatars } = tweet.user || {}; // User information
@@ -64,16 +64,10 @@ $(document).ready(function() {
 
     event.preventDefault(); // Prevent default behaviour
     const tweetValue = $(this).find('#tweet-text').val(); // Extract textarea value
-    const errorElement = $('.error');
-    const error = validateTweetSubmission(tweetValue); // Generate error text if error is present
+    const error = validateTweetSubmission(tweetValue); // Store error text if validation fails, false if no error present
 
-    // Hide error on form submission, set text of error to relevant message
-    errorElement.slideUp(() => {
-      errorElement.text(error);
-    });
-
+    renderError(error);
     if (error) {
-      errorElement.slideDown(); // Show error message
       return; // Prevent data from being POSTed
     }
 
@@ -88,7 +82,8 @@ $(document).ready(function() {
         () => {
           $(this).find('#tweet-text').val('').trigger("input"); // Clear form and trigger input event to reset character counter
         }
-      ]
+      ],
+      error: () => renderError("Something went wrong...")
     });
   });
 
