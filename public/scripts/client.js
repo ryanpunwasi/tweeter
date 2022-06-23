@@ -34,24 +34,30 @@ const createTweetElement = (tweet) => {
 };
 
 const renderTweets = tweets => {
-  
-  // Create HTML template for each tweet and append it to #tweets-container
-  $('#tweets-container').remove();
-  const listOfTweets = $('<section id="tweets-container">');
+  /**
+   * Create HTML template for each tweet and append it to #tweets-container
+   */
+
+  $('#tweets-container').remove(); // Remove existing tweet container
+  const listOfTweets = $('<section id="tweets-container">'); // Create new tweets container
+
+  // Build list of tweets and add them to container
   tweets.forEach(tweet => {
     const tweetElement = createTweetElement(tweet);
     listOfTweets.append(tweetElement);
   });
   listOfTweets.append("</section>");
-  $('#main').append(listOfTweets);
+
+  $('#main').append(listOfTweets); // Append to DOM
 };
 
 const loadTweets = () => {
   const errorElement = $('.general-error');
+
   // Make AJAX GET request to /tweets
   $.ajax('/tweets', {
     method: 'GET',
-    error: (e) => renderError(`Unable to load tweets (${e.status})`, errorElement)
+    error: (e) => renderError(`Unable to load tweets (${e.status})`, errorElement) // Render error if request fails
   })
   .done(function(data) {
     renderTweets(data); // Render tweets once they are fetched
@@ -90,10 +96,10 @@ $(document).ready(function() {
           $(this).find('#tweet-text').val('').trigger("input"); // Clear form and trigger input event to reset character counter
         }
       ],
-      error: () => renderError("Something went wrong...", errorElement)
+      error: () => renderError("Something went wrong...", errorElement) // Render error is request fails
     });
   });
 
-  // Load tweets
+  // Fetch tweets
   loadTweets();
 });
