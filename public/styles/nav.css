@@ -44,3 +44,16 @@ nav span {
 .new-tweet-container p {
   margin-bottom: 0.4em;
  }
+
+ @keyframes arrows {
+  0%   {transform: translateY(-0.1em);}
+  50%  {transform: translateY(0.1em)}
+  100% {transform: translateY(-0.1rem)}
+}
+
+ #compose:hover i {
+  animation-name: arrows;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+ }
