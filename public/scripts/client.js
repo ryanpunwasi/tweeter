@@ -36,13 +36,14 @@ const createTweetElement = (tweet) => {
 const renderTweets = tweets => {
   
   // Create HTML template for each tweet and append it to #tweets-container
-  const listOfTweets = $('<div>');
+  $('#tweets-container').remove();
+  const listOfTweets = $('<section id="tweets-container">');
   tweets.forEach(tweet => {
     const tweetElement = createTweetElement(tweet);
     listOfTweets.append(tweetElement);
   });
-  listOfTweets.append("</div>");
-  $('#tweets-container').html(listOfTweets);
+  listOfTweets.append("</section>");
+  $('#main').append(listOfTweets);
 };
 
 const loadTweets = () => {
