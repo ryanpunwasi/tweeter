@@ -61,9 +61,10 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container" id="main">
+      <div class="error general-error"></div>
       <section class="new-tweet">
         <h3>Compose Tweet</h3>
-        <div class="error"></div>
+        <div class="error validate-error"></div>
         <form method="POST" action="/tweets">
           <label for="tweet-text">What are you humming about?</label>
           <textarea name="text" id="tweet-text"></textarea>
