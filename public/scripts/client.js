@@ -70,7 +70,7 @@ $(document).ready(function() {
 
     event.preventDefault(); // Prevent default behaviour
     const tweetValue = $(this).find('#tweet-text').val(); // Extract textarea value
-    const error = validateTweetSubmission(tweetValue); // Store error text if validation fails, false if no error present
+    const error = validateTweetSubmission(tweetValue); // Store error text if validation fails, empty string if no error present
     const errorElement = $('.validate-error'); // Get error element
 
     renderError(error, errorElement);
