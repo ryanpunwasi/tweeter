@@ -24,7 +24,9 @@ Tweeter is a simple, single-page Twitter clone.
 !["Screenshot tweets list"](https://github.com/ryanpunwasi/tweeter/blob/master/docs/tweet-list.png?raw=true)
 
 *Error message*
+
 !["Screenshot of error message"](https://github.com/ryanpunwasi/tweeter/blob/master/docs/tweet-error.png?raw=true)
 
 *Individual tweet*
+
 !["Screenshot of individual tweet"](https://github.com/ryanpunwasi/tweeter/blob/master/docs/tweet.png?raw=true)
