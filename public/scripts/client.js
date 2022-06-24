@@ -1,5 +1,8 @@
 const createTweetElement = (tweet) => {
-  /* Returns a JQuery element that consists of the `name`, `handle`, `avatars`, `text` and `created_at` properties in tweet embedded in a HTML template.
+  /**
+   * (object) => JQuery object
+   * Returns a JQuery element object that consists of the `name`, `handle`, `avatars`, `text` and 
+   * `created_at` properties in tweet embedded in a HTML template.
   */
 
   const { name, handle, avatars } = tweet.user || {}; // User information
@@ -35,7 +38,8 @@ const createTweetElement = (tweet) => {
 
 const renderTweets = tweets => {
   /**
-   * Create HTML template for each tweet and append it to #tweets-container
+   * (object) => undefined
+   * Create a JQuery element object consisting of all the tweets in tweets and append it to #main
    */
 
   $('#tweets-container').remove(); // Remove existing tweet container
@@ -52,6 +56,10 @@ const renderTweets = tweets => {
 };
 
 const loadTweets = () => {
+  /**
+   * () => undefined
+   * Make GET request to /tweets endpoint and render data on success. If request is unsuccessful, render error.
+   */
   const errorElement = $('.general-error');
 
   // Make AJAX GET request to /tweets

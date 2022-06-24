@@ -1,5 +1,6 @@
 const renderError = (errorText, ele) => {
 /**
+ * (string, JQuery object) => undefined
  * Toggles animation for error element (ele) and sets text of error element to value of errorText
  */
 
