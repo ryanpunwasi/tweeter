@@ -6,6 +6,5 @@ const renderEscapedText = (str) => {
 
   let div = document.createElement("div"); // Create div
   div.appendChild(document.createTextNode(str)); // Create and append a text node to div
-  console.log(typeof div.innerHTML);
   return div.innerHTML;
 };
